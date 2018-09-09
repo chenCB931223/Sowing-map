@@ -24,7 +24,6 @@ window.onload = function(){
         slide.play();
     }) 
 };
-
 //构造函数
 function Slide(box,images,duration){    
    this.box = document.querySelector(box);
@@ -35,7 +34,6 @@ function Slide(box,images,duration){
    this.now = 0;
    this.timer = null;
    this.init();
-
 }
 Slide.prototype.init = function(){
     this.creat();
@@ -55,13 +53,11 @@ Slide.prototype.creat = function(){
 
     var str = '';
     var strDots = '';
-
 //创建图片跟小圆点
     for(var i = 0; i < this.len; i++){    
         str += '<li><img  src="' + this.images[i] + '"/></li>';   
         strDots += '<span></span>';
     }
-
     contenBox.innerHTML = str;
     control.innerHTML = strDots;
 //克隆第一张图片
@@ -80,8 +76,7 @@ Slide.prototype.move = function(){
     list.style.left = - item * this.now + 'px';
 }
 //获取小圆点位置
-Slide.prototype.dotClass = function(){
-    
+Slide.prototype.dotClass = function(){ 
     var dot = this.box.querySelectorAll('span');
     var doted = dot.length;
     for(var i = 0;i < doted;i++){
@@ -93,7 +88,6 @@ Slide.prototype.dotClass = function(){
     //给当前小圆点设置class
     dot[this.now % this.len ].classList.add('on');
 }
-
 //图片跳转
 Slide.prototype.go = function(step){
     
@@ -112,8 +106,7 @@ Slide.prototype.go = function(step){
     }
 //动画效果
     animate(list,-liWidth * this.now);
-   this.dotClass();
-   
+   this.dotClass();   
 }
 
 //事件绑定
@@ -124,17 +117,13 @@ Slide.prototype.addEven = function(){
         dots[j].index = j;
         //小圆点点击事件
         dots[j].addEventListener('click',function(){
-
-
             if(this.index == _this.now) return;
             _this.now = this.index;     
             _this.dotClass();
             _this.move();
         }); 
-
     }
-    //鼠标移入事件
-    
+    //鼠标移入事件  
     this.box.addEventListener('mouseover',function(){
         _this.stop();
     });
@@ -146,14 +135,12 @@ Slide.prototype.addEven = function(){
 }
 
 //定时器开启 
-
 Slide.prototype.play = function(){
     var _this = this;
    _this.timer = setInterval(function(){
        _this.go(1);
    },_this.duration);
 }
-
 //清除定时器
 Slide.prototype.stop = function(){
     clearInterval(this.timer);
