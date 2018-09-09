@@ -61,8 +61,7 @@ Slide.prototype = {
         });
         var $list = $('.content li:first').clone();
         contenBox.append($list);
-        contenBox.css('width',$list.width() * (this.len + 2));
-
+        contenBox.css('width',$list.width() * (this.len + 1));
     },
 
     move : function(){
