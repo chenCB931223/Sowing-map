@@ -74,7 +74,7 @@ Slide.prototype = {
         this.now += step;
 	$(".content").animate({'left':-$liWidth * this.now});
         if(this.now == 0){
-           $(".content").animate({'left':-$liWidth * this.len + 1},0);
+           $(".content").animate({'left':-$liWidth * this.len},0);
            this.now = this.len;
         }
         if(this.now == this.len + 1){
