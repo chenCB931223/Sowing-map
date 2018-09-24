@@ -53,18 +53,20 @@ Slide.prototype.creat = function(){
 
     var str = '';
     var strDots = '';
-//创建图片跟小圆点
+    //创建图片跟小圆点
     for(var i = 0; i < this.len; i++){    
         str += '<li><img  src="' + this.images[i] + '"/></li>';   
         strDots += '<span></span>';
     }
     contenBox.innerHTML = str;
     control.innerHTML = strDots;
-//克隆第一张图片
+    
+    //克隆第一张图片
     var imgs = document.querySelectorAll('li')[0];
     var imgs_f = imgs.cloneNode(true);
     contenBox.appendChild(imgs_f);
-//设置ul的宽度
+    
+    //设置ul的宽度
     contenBox.style.width = imgs.offsetWidth * (this.len + 1) + 'px';
     contenBox.style.left = - imgs.offsetWidth  * this.now + 'px';
 }
@@ -80,14 +82,17 @@ Slide.prototype.dotClass = function(){
     var dot = this.box.querySelectorAll('span');
     var doted = dot.length;
     for(var i = 0;i < doted;i++){
-//给小圆点去除class
+        
+        //给小圆点去除class
         if(dot[i].classList.contains('on')){
             dot[i].classList.remove('on');
         }       
-    }  
+    } 
+    
     //给当前小圆点设置class
     dot[this.now % this.len ].classList.add('on');
 }
+
 //图片跳转
 Slide.prototype.go = function(step){
     
@@ -95,7 +100,8 @@ Slide.prototype.go = function(step){
     var liWidth = list.querySelectorAll('li')[0].offsetWidth;
 
     this.now += step;
-//判断图片跳转
+    
+    //判断图片跳转
     if(this.now < 0){
         list.style.left = -liWidth * this.len + 'px';
          this.now = this.len - 1;
@@ -104,7 +110,8 @@ Slide.prototype.go = function(step){
         list.style.left = 0;        
        this.now = 1;
     }
-//动画效果
+    
+    //动画效果
     animate(list,-liWidth * this.now);
    this.dotClass();   
 }
@@ -115,6 +122,7 @@ Slide.prototype.addEven = function(){
     var dots = _this.box.querySelectorAll('span');
     for(var j = 0;j < _this.len;j++){
         dots[j].index = j;
+        
         //小圆点点击事件
         dots[j].addEventListener('click',function(){
             if(this.index == _this.now) return;
